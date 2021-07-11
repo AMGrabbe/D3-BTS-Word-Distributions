@@ -20,7 +20,6 @@ class App extends Component {
    
   } 
 
-
   render(){
     const {data} = this.state;
     return (

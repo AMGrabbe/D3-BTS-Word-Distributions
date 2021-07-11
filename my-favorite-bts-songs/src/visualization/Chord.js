@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as ch from "./new_chord";
 import * as d3 from "d3";
 
 
@@ -10,52 +11,60 @@ const memberColors = {
 
 
 class Chord extends Component {
-       
-    componentDidMount(){
+    constructor(props)
+    {
+        super(props);
+    }   
+
+    async componentDidMount(){
         
         this.chord = d3.select(".diagram").append('svg')
         .attr('height', 500)
         .attr('width', 500)
         .append("g")
         .attr('transform', "translate( 250, 250)")
+       
         
-        this.drawChord()
     }
 
+    async componentDidUpdate(){
+        this.drawChord();
+    }
+    
     drawChord(){
         const {data} = this.props;
-       // console.log(matrix.length)
 
-        const matrix = [
-            [51, 0, 0, 0, 0, 0, 0],
-            [27, 0, 0, 0, 0, 0, 0],
-            [58, 0, 0, 0, 0, 0, 0],
-            [92, 0, 0, 0, 0, 0, 0],
-            [25, 0, 0, 0, 0, 0, 0],
-            [59, 0, 0, 0, 0, 0, 0],
-            [76, 0, 0, 0, 0, 0, 0]
-        ];
-        const res = d3.chord()
-            .padAngle(0.05)     // padding between entities (black arc)
-            .sortSubgroups(d3.descending)
-            (matrix)
+        /*const res = ch.chord(false,false)
+        .padAngle(0.05)    // padding between entities (black arc)
+        (data.WordsSep)*/
 
-        console.log(res)
+        console.log(data.Sequence)
+        const test = ch.new_chord()(data.Sequence)  // padding between entities (black arc)
+        
+
+        console.log(test)
 
         this.chord
-          .datum(res)
-          .append("g")
-          .selectAll("g")
-          .data(d => d.groups)
-          .join("g")
-          .append("path")
+        .datum(test)
+        .append("g")
+        .selectAll("g")
+        .data(d => {
+            console.log(d.groups)
+            return d.groups;
+
+        }
+            )
+        .join("g")
+        .append("path")
             .style("fill", "grey")
             .style("stroke", "black")
             .attr("d", d3.arc()
-              .innerRadius(200)
-              .outerRadius(210)
+            .innerRadius(200)
+            .outerRadius(210)
             )
     }
+ 
+
 
     render (){
         return (null)
