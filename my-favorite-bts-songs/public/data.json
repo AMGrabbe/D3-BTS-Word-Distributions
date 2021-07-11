@@ -2,35 +2,37 @@
     {
         "Song": "Black Swan",
         "WordSum": 378,
-        "Members": [
-        {
-            "Name": "Suga",
-            "Words": 51
-        },
-        {
-            "Name": "RM",
-            "Words": 27
-        },
-        {
-            "Name": "Jin",
-            "Words": 58
-        },
-        {
-            "Name": "Junkook",
-            "Words": 92
-        },
-        {
-            "Name": "J-Hope",
-            "Words": 25
-        },
-        {
-            "Name": "V",
-            "Words": 59
-        },
-        {
-            "Name": "Jimin",
-            "Words": 76
-        }
-    ]}
+        "WordsSep": [
+            [51, 0, 0, 0, 0, 0, 0],
+            [27, 0, 0, 0, 0, 0, 0],
+            [58, 0, 0, 0, 0, 0, 0],
+            [92, 0, 0, 0, 0, 0, 0],
+            [25, 0, 0, 0, 0, 0, 0],
+            [59, 0, 0, 0, 0, 0, 0],
+            [76, 0, 0, 0, 0, 0, 0]
+        ],
+        "Members":[
+            {
+                "Name": "Suga"
+            },
+            {
+                "Name": "RM"
+            },
+            {
+                "Name": "Jin"
+            },
+            {
+                "Name": "Junkook"
+            },
+            {
+                "Name": "J-Hope"
+            },
+            {
+                "Name": "V"
+            },
+            {
+                "Name": "Jimin"
+            }
+        ]}
     
 ]
