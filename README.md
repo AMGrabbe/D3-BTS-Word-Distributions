@@ -44,7 +44,7 @@ Which results in the result I wanted for the first step:
 
 Underneath d3.chord() only creates a new array, which contains objects storing source and target information:
 
-```json
+```
 {
   {
     "source": {
@@ -60,6 +60,7 @@ Underneath d3.chord() only creates a new array, which contains objects storing s
       "value": 0
     }
   },
+  ...
   "groups": {
     "index": 0,
     "startAngle": 1.2927537473196078,
@@ -79,7 +80,7 @@ After rewriting the `d3.chords()` I get a pretty good but still confusing result
 
 | |![basic chord diagram](images/newChord.jpg)||
 |:-:|:--:|:-:|
-| |Outer ring of the diagram showing the overall distribution of words in a song.||
+| |Basic chord diagram drawn with new chord function.||
 
 But the data structure that is accepted now is mach easier to  create. Now it takes an array with the sequence.
 
