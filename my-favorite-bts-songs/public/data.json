@@ -1,43 +1,90 @@
  {
         "Song": "Black Swan",
         "WordSum": 378,
-        "WordsSep": [
-            [51, 0, 0, 0, 0, 0, 0],
-            [27, 0, 0, 0, 0, 0, 0],
-            [58, 0, 0, 0, 0, 0, 0],
-            [92, 0, 0, 0, 0, 0, 0],
-            [25, 0, 0, 0, 0, 0, 0],
-            [59, 0, 0, 0, 0, 0, 0],
-            [76, 0, 0, 0, 0, 0, 0]
-        ],
         "Sequence": [
             {
+                "Name": "Junkook",
+                "Words": 34
+            },
+            {
                 "Name": "Suga",
-                "Words": 2
+                "Words": 26
+            },
+            {
+                "Name": "RM",
+                "Words": 28
             },
             {
                 "Name": "V",
-                "Words": 14
+                "Words": 13
             },
             {
-                "Name": "Jin",
-                "Words": 6
+                "Name": "Jimin",
+                "Words": 8
             },
             {
-                "Name": "Suga",
-                "Words": 7
+                "Name": "Junkook",
+                "Words": 9
+            },
+            {
+                "Name": "Jimin",
+                "Words": 18
             },
             {
                 "Name": "V",
-                "Words": 14
+                "Words": 12
             },
             {
                 "Name": "Jin",
-                "Words": 6
+                "Words": 18
+            },
+            {
+                "Name": "Jimin",
+                "Words": 18
+            },
+            {
+                "Name": "V",
+                "Words": 16
+            },
+            {
+                "Name": "J-Hope",
+                "Words": 25
             },
             {
                 "Name": "Suga",
-                "Words": 7
+                "Words": 25
+            },
+            {
+                "Name": "Junkook",
+                "Words": 16
+            },
+            {
+                "Name": "Jin",
+                "Words": 10
+            },
+            {
+                "Name": "Jimin",
+                "Words": 16
+            },
+            {
+                "Name": "V",
+                "Words": 15
+            },
+            {
+                "Name": "Jin",
+                "Words": 12
+            },
+            {
+                "Name": "Junkook",
+                "Words": 18
+            },
+            {
+                "Name": "Jin",
+                "Words": 18
+            },
+            {
+                "Name": "Jimin",
+                "Words": 16
             }
         ],
         "Members": [

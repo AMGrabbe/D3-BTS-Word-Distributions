@@ -34,17 +34,13 @@ class Chord extends Component {
     drawChord(){
         const {data} = this.props;
 
-        /*const res = ch.chord(false,false)
-        .padAngle(0.05)    // padding between entities (black arc)
-        (data.WordsSep)*/
-
         console.log(data.Sequence)
         
         const test = ch.new_chord()
-        (data.Sequence)  // padding between entities (black arc)
+        (data.Sequence)  
         
 
-        console.log(test)
+        var colors = [ "red", "black", "green", "yellow", "violet", "pink", "blue"];
 
         this.chord
         .datum(test)
@@ -58,14 +54,15 @@ class Chord extends Component {
             )
         .join("g")
         .append("path")
-            .style("fill", "grey")
+            .style("fill", function(d, i){
+                return colors[d.index] })
             .style("stroke", "black")
             .attr("d", d3.arc()
             .innerRadius(200)
             .outerRadius(210)
             )
 
-            var colors = [ "red", "black", "green", "yellow", "violet", "pink", "blue"];
+            
 
             this.chord
             .datum(test)
@@ -73,9 +70,10 @@ class Chord extends Component {
             .selectAll("path")
             .data(d => d)
             .join("path")
-            .style("fill", function(d, i){ return colors[i] })
+            .style("fill", function(d, i){
+                return colors[d.source.index] })
               .attr("d", d3.ribbon()
-                .radius(200)
+                .radius(195)
               )
               .style("stroke", "black")
               .style('opacity', 0.3);

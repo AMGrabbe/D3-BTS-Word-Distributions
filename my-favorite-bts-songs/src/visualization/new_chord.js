@@ -30,11 +30,7 @@ function compareValue(compare) {
 }
 
 export function new_chord(){
-  var padAngle = 0,
-    sortGroups = null,
-    sortSubgroups = null,
-    sortChords = null,
-    oterValues = []
+  var padAngle = 0
     
     function new_chord(d)
     {
@@ -49,9 +45,8 @@ export function new_chord(){
           chords = new Array(sequence.length),
           groups = new Array(entities),
           groupangles = new Array(entities),
-          subgroups,
           k = 0, dx;
-          //subgrouos, subgroupindex, numsubgroupt if two people sing one line
+    
           
           // TODO: iterate map
           data.forEach( el => {
@@ -82,14 +77,13 @@ export function new_chord(){
    
           for (let i = 0; i < n-1; i++){
               // TODO: angles in source equal to target agngle
-              var index = groupIndex.findIndex(el => el === sequence[i].Name); // index of the name
+              var index = groupIndex.findIndex(el => el === sequence[i].Name); 
               var nextIndex = groupIndex.findIndex(el => el === sequence[i+1].Name);
               //groupName = sequence[index].key // member name
               let chord = chords[i] = {source : null, target : null};
             
               chord.source = {
                 index: index, 
-                //groupindex: index,
                 startAngle: checkSubangle(index, groupangles, groupSums, k), 
                 endAngle: groupangles[index] += sequence[i].Words *k,
                 value: sequence[i].Words};
@@ -97,7 +91,6 @@ export function new_chord(){
               if (i !== n-1)
               {
                 chord.target = {index: nextIndex,
-                  //groupIndex: groupIndex[i+1],
                   startAngle: checkSubangle(nextIndex, groupangles, groupSums, k), 
                   endAngle: groupangles[nextIndex] + sequence[i+1].Words *k,
                   value: sequence[i+ 1].Words};
