@@ -39,7 +39,9 @@ class Chord extends Component {
         (data.WordsSep)*/
 
         console.log(data.Sequence)
-        const test = ch.new_chord()(data.Sequence)  // padding between entities (black arc)
+        
+        const test = ch.new_chord()
+        (data.Sequence)  // padding between entities (black arc)
         
 
         console.log(test)
@@ -49,7 +51,7 @@ class Chord extends Component {
         .append("g")
         .selectAll("g")
         .data(d => {
-            console.log(d.groups)
+            console.log(d)
             return d.groups;
 
         }
@@ -62,10 +64,25 @@ class Chord extends Component {
             .innerRadius(200)
             .outerRadius(210)
             )
+
+            var colors = [ "red", "black", "green", "yellow", "violet", "pink", "blue"];
+
+            this.chord
+            .datum(test)
+            .append("g")
+            .selectAll("path")
+            .data(d => d)
+            .join("path")
+            .style("fill", function(d, i){ return colors[i] })
+              .attr("d", d3.ribbon()
+                .radius(200)
+              )
+              .style("stroke", "black")
+              .style('opacity', 0.3);
+
+              console.log(this.chord)
     }
  
-
-
     render (){
         return (null)
     }

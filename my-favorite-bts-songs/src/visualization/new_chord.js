@@ -10,6 +10,16 @@ function range(i, j) {
   return Array.from({length: j - i}, (_, k) => i + k);
 }
 
+function checkSubangle(index, groupangles, groupSums, k) {
+  // TODO: use groups array for initializing
+  if(!groupangles[index]) groupangles[index] = groupSums.slice(0, index).reduce((a,b) =>{
+    if(index === 0) return 0;
+    if(index === 1) return groupSums[0];
+    return a+b;
+  }, 0) * k;
+  return groupangles[index];
+}
+
 function compareValue(compare) {
   return function(a, b) {
     return compare(
@@ -33,10 +43,12 @@ export function new_chord(){
         const data = d3.group(d, d => d.Name);
 
         var n = sequence.length,
-          groupSums = [], // how many singing parts
+          entities = data.keys.length,
+          groupSums = [],
           groupIndex = Array.from(data.keys()),
           chords = new Array(sequence.length),
-          groups = new Array(3),
+          groups = new Array(entities),
+          groupangles = new Array(entities),
           subgroups,
           k = 0, dx;
           //subgrouos, subgroupindex, numsubgroupt if two people sing one line
@@ -46,49 +58,53 @@ export function new_chord(){
              let x = el.length,
               sum = 0;
               for (let j = 0; j < x; j++){
-              console.log(el[j].Words);
               sum += el[j].Words;
               } 
             groupSums.push(sum);
             k += sum;
           })
 
-        k = max(0, tau - padAngle * 3) / k;
-        dx = k ? padAngle : tau / 3;
+        k = max(0, tau - padAngle * entities) / k;
+        dx = k ? padAngle : tau / entities;
 
-         { //loop sequence and define target ans source
-          let x = 0;
-          for (let i = 0; i < n; i++){
-            let x0 = x;
-            console.log(groupIndex.findIndex(el => el === sequence[i].Name));
-
-              var index = groupIndex.findIndex(el => el === sequence[i].Name);
-              console.log(groupSums);
+         {
+          for (let i = 0; i < groupSums.length; i++)
+          {
+            let x = 0
+            groups[i] = {
+              index: i,
+              startAngle: x += i === 0 ? dx : (groupSums.slice(0, i).reduce((a,b) => a+b, 0) * k) + dx,
+              endAngle: x += groupSums[i] * k ,
+              value: groupSums[i],
+              //groupname: groupname
+             }
+          }
+   
+          for (let i = 0; i < n-1; i++){
+              // TODO: angles in source equal to target agngle
+              var index = groupIndex.findIndex(el => el === sequence[i].Name); // index of the name
+              var nextIndex = groupIndex.findIndex(el => el === sequence[i+1].Name);
               //groupName = sequence[index].key // member name
               let chord = chords[i] = {source : null, target : null};
+            
               chord.source = {
                 index: index, 
                 //groupindex: index,
-                startAngle: x, //angle will maybe depend on group indexes?
-                endAngle: x += matrix[i * n + j] * k, 
-                value: sequence.Words};
-              chord.target = {index: i + 1 ,
-                //groupIndex: groupIndex[i+1],
-                startAngle: x, 
-                endAngle: x += matrix[i * n + j] * k,
-                value: sequence[i +1]};
-           
-            groups[index] = {
-                index: index,
-                startAngle: x0,
-                endAngle: x,
-                value: groupSums[index],
-                //groupname: groupname
-            }
-            x +=dx
-          
-          }
-            
+                startAngle: checkSubangle(index, groupangles, groupSums, k), 
+                endAngle: groupangles[index] += sequence[i].Words *k,
+                value: sequence[i].Words};
+              
+              if (i !== n-1)
+              {
+                chord.target = {index: nextIndex,
+                  //groupIndex: groupIndex[i+1],
+                  startAngle: checkSubangle(nextIndex, groupangles, groupSums, k), 
+                  endAngle: groupangles[nextIndex] + sequence[i+1].Words *k,
+                  value: sequence[i+ 1].Words};
+              }
+
+            }  
+
           }
               chords = Object.values(chords);
               chords.groups = groups;
@@ -96,7 +112,7 @@ export function new_chord(){
           
         }
     new_chord.padAngle = function(_) {
-      return arguments.length ? (padAngle = max(0, _), chord) : padAngle;
+      return arguments.length ? (padAngle = max(0, _), new_chord) : padAngle;
     };
   
     return new_chord;   
