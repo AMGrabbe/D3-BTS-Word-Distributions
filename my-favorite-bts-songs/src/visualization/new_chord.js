@@ -10,13 +10,9 @@ function range(i, j) {
   return Array.from({length: j - i}, (_, k) => i + k);
 }
 
-function checkSubangle(index, groupangles, groupSums, k) {
-  // TODO: use groups array for initializing
-  if(!groupangles[index]) groupangles[index] = groupSums.slice(0, index).reduce((a,b) =>{
-    if(index === 0) return 0;
-    if(index === 1) return groupSums[0];
-    return a+b;
-  }, 0) * k;
+function checkSubangle(index, groupangles, groups) {
+ 
+  if(!groupangles[index]) groupangles[index] = groups[index].startAngle
   return groupangles[index];
 }
 
@@ -36,12 +32,12 @@ export function new_chord(){
     {
         // calculate outer ringfrom grouped sequence
         const sequence = d;
-        const data = d3.group(d, d => d.Name);
+        const nameMap = d3.group(d, d => d.Name);
 
         var n = sequence.length,
-          entities = data.keys.length,
+          entities = nameMap.size,
           groupSums = [],
-          groupIndex = Array.from(data.keys()),
+          groupIndex = Array.from(nameMap.keys()),
           chords = new Array(sequence.length),
           groups = new Array(entities),
           groupangles = new Array(entities),
@@ -49,7 +45,7 @@ export function new_chord(){
     
           
           // TODO: iterate map
-          data.forEach( el => {
+          nameMap.forEach( el => {
              let x = el.length,
               sum = 0;
               for (let j = 0; j < x; j++){
@@ -63,16 +59,18 @@ export function new_chord(){
         dx = k ? padAngle : tau / entities;
 
          {
+          let x = 0
           for (let i = 0; i < groupSums.length; i++)
           {
-            let x = 0
+            
             groups[i] = {
               index: i,
-              startAngle: x += i === 0 ? dx : (groupSums.slice(0, i).reduce((a,b) => a+b, 0) * k) + dx,
+              startAngle: x , 
               endAngle: x += groupSums[i] * k ,
               value: groupSums[i],
               //groupname: groupname
              }
+             x += dx;
           }
    
           for (let i = 0; i < n-1; i++){
@@ -84,14 +82,14 @@ export function new_chord(){
             
               chord.source = {
                 index: index, 
-                startAngle: checkSubangle(index, groupangles, groupSums, k), 
+                startAngle: checkSubangle(index, groupangles, groups), 
                 endAngle: groupangles[index] += sequence[i].Words *k,
                 value: sequence[i].Words};
               
               if (i !== n-1)
               {
                 chord.target = {index: nextIndex,
-                  startAngle: checkSubangle(nextIndex, groupangles, groupSums, k), 
+                  startAngle: checkSubangle(nextIndex, groupangles, groups), 
                   endAngle: groupangles[nextIndex] + sequence[i+1].Words *k,
                   value: sequence[i+ 1].Words};
               }

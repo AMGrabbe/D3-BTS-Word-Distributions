@@ -36,7 +36,7 @@ class Chord extends Component {
 
         console.log(data.Sequence)
         
-        const test = ch.new_chord()
+        const test = ch.new_chord().padAngle(0.05)
         (data.Sequence)  
         
 
@@ -64,7 +64,7 @@ class Chord extends Component {
 
             
 
-            this.chord
+           /* this.chord
             .datum(test)
             .append("g")
             .selectAll("path")
@@ -77,7 +77,7 @@ class Chord extends Component {
               )
               .style("stroke", "black")
               .style('opacity', 0.3);
-
+*/
               console.log(this.chord)
     }
  
