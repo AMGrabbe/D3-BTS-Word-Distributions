@@ -37,7 +37,7 @@ export function new_chord(){
         var n = sequence.length,
           entities = nameMap.size,
           groupSums = [],
-          groupIndex = Array.from(nameMap.keys()),
+          groupNames = Array.from(nameMap.keys()),
           chords = new Array(sequence.length),
           groups = new Array(entities),
           groupangles = new Array(entities),
@@ -68,16 +68,14 @@ export function new_chord(){
               startAngle: x , 
               endAngle: x += groupSums[i] * k ,
               value: groupSums[i],
-              //groupname: groupname
+              groupname: groupNames[i]
              }
              x += dx;
           }
    
           for (let i = 0; i < n-1; i++){
-              // TODO: angles in source equal to target agngle
-              var index = groupIndex.findIndex(el => el === sequence[i].Name); 
-              var nextIndex = groupIndex.findIndex(el => el === sequence[i+1].Name);
-              //groupName = sequence[index].key // member name
+              var index = groupNames.findIndex(el => el === sequence[i].Name); 
+              var nextIndex = groupNames.findIndex(el => el === sequence[i+1].Name);
               let chord = chords[i] = {source : null, target : null};
             
               chord.source = {
