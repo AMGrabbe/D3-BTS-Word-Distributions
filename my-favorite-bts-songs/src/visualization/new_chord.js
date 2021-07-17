@@ -84,15 +84,19 @@ export function new_chord(){
                 index: index, 
                 startAngle: checkSubangle(index, groupangles, groups), 
                 endAngle: groupangles[index] += sequence[i].Words *k,
-                value: sequence[i].Words};
+                value: sequence[i].Words,
+                isStart: i === 0
+              };
               
               if (i !== n-1)
               {
                 chord.target = {index: nextIndex,
                   startAngle: checkSubangle(nextIndex, groupangles, groups), 
                   endAngle: groupangles[nextIndex] + sequence[i+1].Words *k,
-                  value: sequence[i+ 1].Words};
+                  value: sequence[i+ 1].Words,
+                  isEnd: i === n-2
               }
+            }
 
             }  
 
