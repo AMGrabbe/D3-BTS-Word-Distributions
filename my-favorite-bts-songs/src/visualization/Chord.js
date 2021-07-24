@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import * as ch from "./new_chord";
+import * as rib from "./new_ribbons";
 import * as d3 from "d3";
 
 var _ = require('lodash');
@@ -22,10 +23,10 @@ class Chord extends Component {
     async componentDidMount(){
         
         this.chord = d3.select(".diagram").append('svg')
-        .attr('height', 500)
-        .attr('width', 500)
+        .attr('height', 1000)
+        .attr('width', 1000)
         .append("g")
-        .attr('transform', "translate( 250, 250)")
+        .attr('transform', "translate( 500, 500)")
        
         
     }
@@ -69,7 +70,7 @@ class Chord extends Component {
                 .outerRadius(210)
                 );
         
-
+        
         // TODO: return subgroups in an array
         const subgroups = this.chord
             .datum(test)
@@ -82,16 +83,16 @@ class Chord extends Component {
      
         ribbons.append("path")
             .style("fill", (d, i) => colors[d.source.index])
-            .attr("d", d3.ribbon()
-                .radius(195))
+            .attr("d", rib.ribbon()
+                .radius(215))
             .style("stroke", "black")
             .style('opacity', 0.3);
 
-        let startpoint = this.chord
+        let outside = this.chord
             .data(start)
             .append("g")
 
-        startpoint
+        outside
         .selectAll("g")
         .data(d => groupTicks(d.source))    // Controls the number of ticks: one tick each 25 here.
         .join("g")
