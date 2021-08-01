@@ -66,8 +66,8 @@ class Chord extends Component {
                     return colors[d.index] })
                 .style("stroke", "black")
                 .attr("d", d3.arc()
-                .innerRadius(200)
-                .outerRadius(210)
+                .innerRadius(100)
+                .outerRadius(110)
                 );
         
         
@@ -84,7 +84,7 @@ class Chord extends Component {
         ribbons.append("path")
             .style("fill", (d, i) => colors[d.source.index])
             .attr("d", rib.ribbon()
-                .radius(215))
+                .radius(115))
             .style("stroke", "black")
             .style('opacity', 0.3);
 

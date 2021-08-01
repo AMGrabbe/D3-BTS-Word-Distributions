@@ -60,7 +60,8 @@ export function ribbon(headRadius) {
         sa1 = endAngle.apply(this, argv) - halfPi,
         tr = +targetRadius.apply(this, (argv[0] = t, argv)),
         ta0 = startAngle.apply(this, argv) - halfPi,
-        ta1 = endAngle.apply(this, argv) - halfPi;
+        ta1 = endAngle.apply(this, argv) - halfPi,
+        sweepflag = 1;
       
 
     if (!context) context = buffer = path();
@@ -74,17 +75,26 @@ export function ribbon(headRadius) {
 
     context.moveTo(sr * cos(sa0), sr * sin(sa0));
     context.arc(0, 0, sr, sa0, sa1); // base bow to sa1
-    //TODO: check target direction to set sweepflag correctly
-    //TODO: radius calculation
     if (sa0 !== ta0 || sa1 !== ta1) {
-        //context.quadraticCurveTo((sr*cos(sa0)+tr*cos(ta1)), (sr*sin(sa0)+tr*sin(ta1)), tr * cos(ta0), tr * sin(ta0));
-        //context.quadraticCurveTo(0, 0, tr * cos(ta0), tr * sin(ta0));
-        context._ += "A50,50,0,1,1," + tr*cos(ta0) +"," +  tr*sin(ta0)
+        // Calculate radius eqqual to distance between points
+        var a = sr * cos(sa1) - sr * cos(ta0);
+        var b = sr * sin(sa1) - sr * sin(ta0);
+        var rad = Math.sqrt(a*a + b*b);
+        
+        var da = (sa1 - ta0)/ Math.PI;
+        if( (da > -1 && da <= 0) || (da > 1 && da <= 2) )
+          sweepflag = 1;
+        else
+          sweepflag = 0;
+        context._ += "A" + rad + ","+ rad +",0,1," + sweepflag + "," + tr*cos(ta0) +"," +  tr*sin(ta0)
         context.arc(0, 0, tr, ta0, ta1);
     }
-    //context.quadraticCurveTo((sr*cos(sa1)+tr*cos(ta0)),(sr*sin(sa1)+tr*sin(ta0)), sr * cos(sa0), sr * sin(sa0));
-    //context.quadraticCurveTo(0, 0, sr * cos(sa0), sr * sin(sa0));
-    context._ += "A50,50,0,0,0," + sr*cos(sa0) +"," +  sr*sin(sa0)
+    var a = sr * cos(ta1) - sr * cos(sa0);
+        var b = sr * sin(ta1) - sr * sin(sa0);
+        var rad = Math.sqrt(a*a + b*b);
+    var da = (sa0 - ta1)/Math.PI;
+    sweepflag = Math.abs(sweepflag -1);
+    context._ += "A" + Math.abs(rad)  + ","+ Math.abs(rad) +",0,1," + sweepflag + "," + sr*cos(sa0) +"," +  sr*sin(sa0)
     context.closePath();
 
     if (buffer) return context = null, buffer + "" || null;
