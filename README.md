@@ -104,10 +104,33 @@ But the data structure that is accepted now is mach easier to  create. Now it ta
 
  The produced output looks generally the same as before.
 
-**Conclusio:** It still needs adjustment for the case, that two or more people are singing one passage (that will probably also need adjustment in `d3.ribbon()`). Further, the output objects need additional information on whether they are start or end point.
+**Later Steps to be concidered:** It still needs adjustment for the case, that two or more people are singing one passage (that will probably also need adjustment in `d3.ribbon()`). 
+
+### Step 2.5
+I created a temporary marker for the starting point (the section where the song starts). In the `new_chord.js` library I added a flag to the data regarding if a entry is start-/ endpoint. But drawing the marker was not as simple as expected due to some DOM-element complcations. **So remember, always know your DOM-element structure (and/or stop thinking too complicated)!**
+
+In the end I used some the `lodash` library to **filter** the one element from the data that has the start flag set to true.
+
+## Step 3: Adjusting `d3.ribbon()`
+
+Since drawing the ribbons in the center of the circle looked quite confusing, I decided to change the `d3.ribbon` library so, that draws the connections on the outside.
+
+Basically I changed `d3.ribbon` from using **cubic bezier curves** to using **arcs** for the larger bow of the connection. Important here was to set the **large-arc-flag** and calculate if the **sweep-flag** needed to be set or not. The last one would determine the direction in which the arc is drawn.
+
+The **radius** would for now just be set to the distance between the endpoints. But is not the optimal solution yet.
+
+| |![basic chord diagram](images/newRibbon.jpg)||
+|:-:|:--:|:-:|
+| |The new ribbon setup.||
+
+Until that result was achieved some weird mistakes happened:
+|![Not correctly set sweep-flag](images/inbetween2.jpg)|![Soething else was not set right](images/inbetween.jpg)|
+|:--:|:-:|
+|When not setting the **sweep-flag** right this happens.| When only one of the **sweep-flags** is set right. (But it looks very fancy.) |
 
 ## References
 - [Data: Black Swan Lyrics](https://colorcodedlyrics.com/2020/01/bts-bangtansonyeondan-black-swan)
 - Bremer, N. & Wu, S. (2021): Data Sketches
 - [D3 Chord diagrams](https://www.d3-graph-gallery.com/chord)
 - [Chord diagrams in general](https://www.data-to-viz.com/graph/chord.html)
+- [Arcs - large-arc-flag & sweep-flag](https://www.w3.org/TR/SVG/paths.html)
