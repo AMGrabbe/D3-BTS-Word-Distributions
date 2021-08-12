@@ -1,5 +1,6 @@
 /*Based on the d3v6 d3.chord() function by Mike Bostock
 ** Adjusted by Anne-Marie Grabbe - July 2021 */
+/* eslint-disable no-unused-expressions */
 import {path} from "d3-path";
 import {slice} from "./array.js";
 import constant from "./constant.js";
@@ -66,12 +67,21 @@ export function ribbon(headRadius) {
 
     if (!context) context = buffer = path();
 
-  /*  if (ap > epsilon) {
-      if (abs(sa1 - sa0) > ap * 2 + epsilon) sa1 > sa0 ? (sa0 += ap, sa1 -= ap) : (sa0 -= ap, sa1 += ap);
-      else sa0 = sa1 = (sa0 + sa1) / 2;
-      if (abs(ta1 - ta0) > ap * 2 + epsilon) ta1 > ta0 ? (ta0 += ap, ta1 -= ap) : (ta0 -= ap, ta1 += ap);
+    if (ap > epsilon) {
+      if (abs(sa1 - sa0) > ap * 2 + epsilon) 
+      {
+        sa1 > sa0 ?
+        (sa0 += ap, sa1 -= ap) : 
+        (sa0 -= ap, sa1 += ap);
+      }
+      
+      else  sa0 = sa1 = (sa0 + sa1) / 2;
+
+      if (abs(ta1 - ta0) > ap * 2 + epsilon) ta1 > ta0 ?
+        (ta0 += ap, ta1 -= ap) : 
+        (ta0 -= ap, ta1 += ap);
       else ta0 = ta1 = (ta0 + ta1) / 2;
-    }*/
+    }
 
     context.moveTo(sr * cos(sa0), sr * sin(sa0));
     context.arc(0, 0, sr, sa0, sa1); // base bow to sa1
@@ -86,7 +96,7 @@ export function ribbon(headRadius) {
           sweepflag = 1;
         else
           sweepflag = 0;
-        context._ += "A" + rad + ","+ rad +",0,1," + sweepflag + "," + tr*cos(ta0) +"," +  tr*sin(ta0)
+        context._ += "A" + Math.abs(rad) + ","+ Math.abs(rad) +",0,1," + sweepflag + "," + tr*cos(ta0) +"," +  tr*sin(ta0)
         context.arc(0, 0, tr, ta0, ta1);
     }
     var a = sr * cos(ta1) - sr * cos(sa0);

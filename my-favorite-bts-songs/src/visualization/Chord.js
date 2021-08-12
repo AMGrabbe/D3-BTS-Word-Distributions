@@ -84,7 +84,8 @@ class Chord extends Component {
         ribbons.append("path")
             .style("fill", (d, i) => colors[d.source.index])
             .attr("d", rib.ribbon()
-                .radius(115))
+                .radius(115)
+                .padAngle(0.05))
             .style("stroke", "black")
             .style('opacity', 0.3);
 
