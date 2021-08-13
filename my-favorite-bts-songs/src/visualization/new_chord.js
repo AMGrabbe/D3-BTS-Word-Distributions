@@ -68,7 +68,7 @@ export function new_chord(){
               startAngle: x , 
               endAngle: x += groupSums[i] * k ,
               value: groupSums[i],
-              groupname: groupNames[i]
+              membername: groupNames[i]
              }
              x += dx;
           }
@@ -83,6 +83,7 @@ export function new_chord(){
                 startAngle: checkSubangle(index, groupangles, groups), 
                 endAngle: groupangles[index] += sequence[i].Words *k,
                 value: sequence[i].Words,
+                membername: groupNames[index],
                 isStart: i === 0
               };
               
@@ -92,6 +93,7 @@ export function new_chord(){
                   startAngle: checkSubangle(nextIndex, groupangles, groups), 
                   endAngle: groupangles[nextIndex] + sequence[i+1].Words *k,
                   value: sequence[i+ 1].Words,
+                  membername: groupNames[index],
                   isEnd: i === n-2
               }
             }

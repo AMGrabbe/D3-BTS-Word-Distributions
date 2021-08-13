@@ -67,6 +67,7 @@ export function ribbon(headRadius) {
 
     if (!context) context = buffer = path();
 
+    // calculate angles with padding
     if (ap > epsilon) {
       if (abs(sa1 - sa0) > ap * 2 + epsilon) 
       {
@@ -83,28 +84,39 @@ export function ribbon(headRadius) {
       else ta0 = ta1 = (ta0 + ta1) / 2;
     }
 
+    // Calculate radii
+    // To make them overlap calculate inner radius by subtracting the connected subgroups' difference from outer radius
+    var radI, radO;
+ 
+    var a = sr * cos(ta1) - sr * cos(sa0);
+    var b = sr * sin(ta1) - sr * sin(sa0);
+    radO = Math.sqrt(a*a + b*b);
+    
+    var ds = Math.abs(sa0-sa1);
+    var dt = Math.abs(ta0-ta1);
+    var difference = Math.abs(ds-dt)/Math.PI;
+    console.log(difference)
+    radI = radO- difference;
+
+
     context.moveTo(sr * cos(sa0), sr * sin(sa0));
     context.arc(0, 0, sr, sa0, sa1); // base bow to sa1
+    var rad;
     if (sa0 !== ta0 || sa1 !== ta1) {
-        // Calculate radius eqqual to distance between points
-        var a = sr * cos(sa1) - sr * cos(ta0);
-        var b = sr * sin(sa1) - sr * sin(ta0);
-        var rad = Math.sqrt(a*a + b*b);
-        
         var da = (sa1 - ta0)/ Math.PI;
         if( (da > -1 && da <= 0) || (da > 1 && da <= 2) )
           sweepflag = 1;
         else
           sweepflag = 0;
-        context._ += "A" + Math.abs(rad) + ","+ Math.abs(rad) +",0,1," + sweepflag + "," + tr*cos(ta0) +"," +  tr*sin(ta0)
+        context._ += "A" + Math.abs(radI) + ","+ Math.abs(radI) +",0,1," + sweepflag + "," + tr*cos(ta0) +"," +  tr*sin(ta0)
         context.arc(0, 0, tr, ta0, ta1);
     }
-    var a = sr * cos(ta1) - sr * cos(sa0);
-        var b = sr * sin(ta1) - sr * sin(sa0);
-        var rad = Math.sqrt(a*a + b*b);
+       // var drad =radO - rad 
+        //if (drad> 0.5) rad -= drad;
+      
     var da = (sa0 - ta1)/Math.PI;
     sweepflag = Math.abs(sweepflag -1);
-    context._ += "A" + Math.abs(rad)  + ","+ Math.abs(rad) +",0,1," + sweepflag + "," + sr*cos(sa0) +"," +  sr*sin(sa0)
+    context._ += "A" + Math.abs(radO)  + ","+ Math.abs(radO) +",0,1," + sweepflag + "," + sr*cos(sa0) +"," +  sr*sin(sa0)
     context.closePath();
 
     if (buffer) return context = null, buffer + "" || null;

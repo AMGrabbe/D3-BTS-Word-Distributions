@@ -1,17 +1,10 @@
+/* eslint-disable react/prop-types */
 import React, {Component} from "react";
 import * as ch from "./new_chord";
 import * as rib from "./new_ribbons";
 import * as d3 from "d3";
 
 var _ = require('lodash');
-
-
-
-const memberColors = {
-    enter: "#FF665A",
-    update: "#7D6B7D",
-    exit: "#FF8C64"
-}
 
 
 class Chord extends Component {
@@ -36,15 +29,14 @@ class Chord extends Component {
     }
     
     drawChord(){
-        const {data} = this.props;
-
+        const {data} = this.props;      
+        const names = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Junkook" ]
+        const colors =  ["#162D59", "#E99FBD", "#B4B8BF", "#F20505", "#D9AA1E", "#05A66B", "#B430D9"]
+        const memberColors = _.zipObject(names, colors);
         
         const test = ch.new_chord().padAngle(0.05)
         (data.Sequence)  
-        
-        
-        var colors = [ "red", "black", "green", "yellow", "violet", "pink", "blue"];
-
+   
         const sData = d3.groups(test, d => d.source.isStart).keys();
 
         const start = _.filter(test, (el) =>{
@@ -62,9 +54,7 @@ class Chord extends Component {
 
         groups.append("g")
             .append("path")
-                .style("fill", function(d, i){
-                    return colors[d.index] })
-                .style("stroke", "black")
+                .style("fill", (d, i) =>memberColors[d.membername])
                 .attr("d", d3.arc()
                 .innerRadius(100)
                 .outerRadius(110)
@@ -82,11 +72,10 @@ class Chord extends Component {
             
      
         ribbons.append("path")
-            .style("fill", (d, i) => colors[d.source.index])
+        .style("fill", (d, i) =>memberColors[d.source.membername])
             .attr("d", rib.ribbon()
                 .radius(115)
-                .padAngle(0.05))
-            .style("stroke", "black")
+                .padAngle(0.1))
             .style('opacity', 0.3);
 
         let outside = this.chord

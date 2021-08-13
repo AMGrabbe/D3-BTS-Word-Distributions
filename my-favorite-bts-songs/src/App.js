@@ -1,5 +1,5 @@
 import './App.css';
-import { Component } from 'react';
+import { React, Component } from 'react';
 import Chord from './visualization/Chord'
 
 class App extends Component {
