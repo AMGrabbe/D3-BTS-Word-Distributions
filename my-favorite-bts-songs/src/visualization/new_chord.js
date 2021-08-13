@@ -79,7 +79,7 @@ export function new_chord(){
               let chord = chords[i] = {source : null, target : null};
             
               chord.source = {
-                index: index, 
+                index: i, 
                 startAngle: checkSubangle(index, groupangles, groups), 
                 endAngle: groupangles[index] += sequence[i].Words *k,
                 value: sequence[i].Words,
