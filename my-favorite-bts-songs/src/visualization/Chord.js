@@ -74,10 +74,10 @@ class Chord extends Component {
      
         ribbons.append("path")
         //.style("fill", (d, i) =>memberColors[d.source.membername])
-        .attr("fill", (d) => calculateGradient(d)) 
         .attr("d", rib.ribbon()
             .radius(115)
             .padAngle(0.1))
+        .attr("fill", (d) => calculateGradient(d)) 
         //.style('opacity', 0.3);
         console.log(ribbons);
 
@@ -107,23 +107,38 @@ class Chord extends Component {
         }
 
         function calculateGradient(d) {
-            d3.select('svg').append("linearGradient")
+            // TODO: store in data
+            var ang =calcRad( d.source.startAngle- Math.PI/2, 
+                	d.target.startAngle- Math.PI/2 );
+            console.log(ang);
+            d3.select('svg').append("radialGradient")
                 .attr("id", `line-gradient-${d.source.index}`)
                 .attr("gradientUnits", "userSpaceOnUse")
                 // TODO: Can I add this to the data
-                .attr("x0", 200 * Math.cos(d.source.startAngle) ) // source start
-                .attr("y0",  200 * Math.cos(d.target.endAngle)) //target end
-                .attr("x1",   200 * Math.sin(d.source.startAngle))
-                .attr("y1",   200 * Math.sin(d.target.endAngle))
+                // TODO: use individual circle radius
+               /* .attr("x1",  ang/2 * Math.cos(d.source.endAngle- Math.PI/2)) // source start
+                .attr("y1",  ang/2  * Math.cos(d.target.endAngle- Math.PI/2)) //target end
+                .attr("x2",   ang/2 * Math.sin(d.source.endAngle - Math.PI/2))
+                .attr("y2",   ang/2 * Math.sin(d.target.endAngle- Math.PI/2))*/
+                .attr("cx",ang  * Math.cos(d.source.endAngle- Math.PI/2))
+                .attr("cy", ang  * Math.sin(d.source.endAngle- Math.PI/2))
+                .attr("r", ang)
                 .selectAll("stop")
                 .data([
-                    {offset: "0%", color: memberColors[d.source.membername]}, // TODO: Add degree and opacity
-                    {offset: "100%", color: "black"}
+                    {offset: "0%", color: memberColors[d.source.membername], opacity: 1}, // TODO: Add degree and opacity
+                    {offset: "100%", color: memberColors[d.source.membername], opacity: 0.1}
                 ])
                 .enter().append("stop")
-               .attr("offset", function(d) { return d.offset; })
-                .attr("stop-color", function(d) { return d.color; });
+                .attr("angle", "90deg")
+                .attr("offset", function(d) { return d.offset; })
+                .attr("stop-color", function(d) { return d.color; })
+                .attr("stop-opacity", function(d) { return d.opacity; });
                 return `url(#line-gradient-${d.source.index})` 
+            }
+            function calcRad(sa0, ta1){
+                var a = 110 * Math.cos(ta1) - 110 * Math.cos(sa0);
+                var b = 110 * Math.sin(ta1) - 110 * Math.sin(sa0);
+                return Math.sqrt(a*a + b*b);
             }
            
     }
