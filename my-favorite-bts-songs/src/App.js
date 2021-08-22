@@ -1,36 +1,36 @@
-import './App.css';
-import { React, Component } from 'react';
-import Chord from './visualization/Chord'
+import "./App.css";
+import { React, Component } from "react";
+import Chord from "./visualization/Chord";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      data: {}
-    }
+      data: {},
+    };
   }
 
   async componentDidMount() {
-    const fetch_response = await fetch(`${process.env.PUBLIC_URL || ""}/data.json`);
+    const fetch_response = await fetch(
+      `${process.env.PUBLIC_URL || ""}/data.json`
+    );
     const json = await fetch_response.json();
-    console.log(json)
+    console.log(json);
     this.setState({
-      data: json
-    })
-   
-  } 
+      data: json,
+    });
+  }
 
-  render(){
-    const {data} = this.state;
+  render() {
+    const { data } = this.state;
     return (
       <div className="App">
         <div className="diagram">
-          <Chord data = {data}/>
+          <Chord data={data} />
         </div>
-       
       </div>
     );
-  }    
+  }
 }
 
 export default App;

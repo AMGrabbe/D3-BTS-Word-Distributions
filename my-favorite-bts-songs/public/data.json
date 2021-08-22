@@ -1,91 +1,90 @@
- {
-        "Song": "Black Swan",
-        "WordSum": 378,
-        "Sequence": [
-            {
-                "Name": "Junkook",
-                "Words": 34
-            },
-            {
-                "Name": "Suga",
-                "Words": 26
-            },
-            {
-                "Name": "RM",
-                "Words": 28
-            },
-            {
-                "Name": "V",
-                "Words": 13
-            },
-            {
-                "Name": "Jimin",
-                "Words": 8
-            },
-            {
-                "Name": "Junkook",
-                "Words": 9
-            },
-            {
-                "Name": "Jimin",
-                "Words": 18
-            },
-            {
-                "Name": "V",
-                "Words": 12
-            },
-            {
-                "Name": "Jin",
-                "Words": 18
-            },
-            {
-                "Name": "Jimin",
-                "Words": 18
-            },
-            {
-                "Name": "V",
-                "Words": 16
-            },
-            {
-                "Name": "J-Hope",
-                "Words": 25
-            },
-            {
-                "Name": "Suga",
-                "Words": 25
-            },
-            {
-                "Name": "Junkook",
-                "Words": 16
-            },
-            {
-                "Name": "Jin",
-                "Words": 10
-            },
-            {
-                "Name": "Jimin",
-                "Words": 16
-            },
-            {
-                "Name": "V",
-                "Words": 15
-            },
-            {
-                "Name": "Jin",
-                "Words": 12
-            },
-            {
-                "Name": "Junkook",
-                "Words": 18
-            },
-            {
-                "Name": "Jin",
-                "Words": 18
-            },
-            {
-                "Name": "Jimin",
-                "Words": 16
-            }
-        ] 
+{
+  "Song": "Black Swan",
+  "WordSum": 378,
+  "Sequence": [
+    {
+      "Name": "Junkook",
+      "Words": 34
+    },
+    {
+      "Name": "Suga",
+      "Words": 26
+    },
+    {
+      "Name": "RM",
+      "Words": 28
+    },
+    {
+      "Name": "V",
+      "Words": 13
+    },
+    {
+      "Name": "Jimin",
+      "Words": 8
+    },
+    {
+      "Name": "Junkook",
+      "Words": 9
+    },
+    {
+      "Name": "Jimin",
+      "Words": 18
+    },
+    {
+      "Name": "V",
+      "Words": 12
+    },
+    {
+      "Name": "Jin",
+      "Words": 18
+    },
+    {
+      "Name": "Jimin",
+      "Words": 18
+    },
+    {
+      "Name": "V",
+      "Words": 16
+    },
+    {
+      "Name": "J-Hope",
+      "Words": 25
+    },
+    {
+      "Name": "Suga",
+      "Words": 25
+    },
+    {
+      "Name": "Junkook",
+      "Words": 16
+    },
+    {
+      "Name": "Jin",
+      "Words": 10
+    },
+    {
+      "Name": "Jimin",
+      "Words": 16
+    },
+    {
+      "Name": "V",
+      "Words": 15
+    },
+    {
+      "Name": "Jin",
+      "Words": 12
+    },
+    {
+      "Name": "Junkook",
+      "Words": 18
+    },
+    {
+      "Name": "Jin",
+      "Words": 18
+    },
+    {
+      "Name": "Jimin",
+      "Words": 16
+    }
+  ]
 }
-    
