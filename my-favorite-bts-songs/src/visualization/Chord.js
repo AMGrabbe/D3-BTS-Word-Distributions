@@ -65,7 +65,7 @@ class Chord extends Component {
       .attr("alignment-baseline", "central")
       .attr("x", 0)
       .attr("y", 0)
-      .text("test");
+      .text("대박");
 
     groups
       .append("g")
