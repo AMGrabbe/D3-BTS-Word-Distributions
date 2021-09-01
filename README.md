@@ -19,7 +19,7 @@ Later information on the sequence of singing will be added.
 ### The chart
 This project is inspired by Nadieh Bremers project ["The Words in the Lord of the Rings"](https://www.visualcinnamon.com/portfolio/words-lord-of-the-rings/) she wrote about in the book *Data Sketches*. She created her own kind of diagram, which based on **Chord diagrams**.
 
-| |![basic chord diagram](images/chord.jpg)||
+| |![basic chord diagram](images/basicchord.jpg)||
 |:-:|:--:|:-:|
 | |A **chord diagram** represents flows or connections between several entities (called nodes). Each entity is represented by a fragment on the outer part of the circular layout. Then, arcs are drawn between each entities. The size of the arc is proportional to the importance of the flow. *[Data-to-Viz](https://www.data-to-viz.com/graph/chord.html)*||
 

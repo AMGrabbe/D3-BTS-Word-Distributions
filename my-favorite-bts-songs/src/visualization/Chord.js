@@ -56,6 +56,17 @@ class Chord extends Component {
       .data((d) => d.groups)
       .enter();
 
+    // Add test field with test text
+    // TODO: give class to element intead grabbing the first g element
+    this.chord
+      .select("g")
+      .append("text")
+      .attr("text-anchor", "middle")
+      .attr("alignment-baseline", "central")
+      .attr("x", 0)
+      .attr("y", 0)
+      .text("test");
+
     groups
       .append("g")
       .append("path")
@@ -70,14 +81,15 @@ class Chord extends Component {
       .data((d) => d)
       .join("g");
 
-    ribbons.append("g")
+    ribbons
+      .append("g")
       //.append("clipPath")
       .attr("id", (d) => `clip${d.source.index}`)
       .append("path")
       //.style("fill", (d, i) =>memberColors[d.source.membername])
       .attr("d", rib.ribbon().radius(115).padAngle(0.1))
-     // .call((d) => createConicalGradtient(d));
-    .attr("fill", (d) => calculateGradient(d));
+      // .call((d) => createConicalGradtient(d));
+      .attr("fill", (d) => calculateGradient(d));
     //.style('opacity', 0.3);
     //console.log(ribbons);
 
