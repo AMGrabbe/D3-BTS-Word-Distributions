@@ -38,7 +38,7 @@ The buid-in d3.chord() function takes a nxn matrix to restructure the data it in
 ```
 Which results in the result I wanted for the first step:
 
-| |![basic chord diagram](images/step_1.jpg)||
+| |![basic chord diagram](images/groups.jpg)||
 |:-:|:--:|:-:|
 | |Outer ring of the diagram showing the overall distribution of words in a song.||
 
@@ -78,7 +78,7 @@ This array is used to draw the diagram.
 
 After rewriting the `d3.chords()` I get a pretty good but still confusing result:
 
-| |![basic chord diagram](images/newChord.jpg)||
+| |![basic chord diagram](images/chordNew.jpg)||
 |:-:|:--:|:-:|
 | |Basic chord diagram drawn with new chord function.||
 
@@ -119,12 +119,12 @@ Basically I changed `d3.ribbon` from using **cubic bezier curves** to using **ar
 
 The **radius** would for now just be set to the distance between the endpoints. But is not the optimal solution yet.
 
-| |![basic chord diagram](images/newRibbon.jpg)||
+| |![basic chord diagram](images/ribbonsNew.jpg)||
 |:-:|:--:|:-:|
 | |The new ribbon setup.||
 
 Until that result was achieved some weird mistakes happened:
-|![Not correctly set sweep-flag](images/inbetween2.jpg)|![Soething else was not set right](images/inbetween.jpg)|
+|![Not correctly set sweep-flag](images/test2.jpg)|![Something else was not set right](images/test.jpg)|
 |:--:|:-:|
 |When not setting the **sweep-flag** right this happens.| When only one of the **sweep-flags** is set right. (But it looks very fancy.) |
 

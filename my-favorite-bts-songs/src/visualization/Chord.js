@@ -70,13 +70,29 @@ class Chord extends Component {
       .data((d) => d)
       .join("g");
 
-    ribbons
+    ribbons.append("g")
+      //.append("clipPath")
+      .attr("id", (d) => `clip${d.source.index}`)
       .append("path")
       //.style("fill", (d, i) =>memberColors[d.source.membername])
       .attr("d", rib.ribbon().radius(115).padAngle(0.1))
-      .attr("fill", (d) => calculateGradient(d));
+     // .call((d) => createConicalGradtient(d));
+    .attr("fill", (d) => calculateGradient(d));
     //.style('opacity', 0.3);
-    console.log(ribbons);
+    //console.log(ribbons);
+
+    //.append("foreignObject")
+    //.attr("width", 1000)
+    //.attr("height", 1000)
+    function createConicalGradtient(d) {
+      d3.select("svg")
+        .append("image")
+        .attr("href", "chord.jpg")
+        //.attr("background-color", "yellow")
+        .attr("width", 1000)
+        .attr("height", 1000)
+        .attr("clip-path", `url(#clip${0})`);
+    }
 
     let outside = this.chord.data(start).append("g");
 
@@ -113,10 +129,7 @@ class Chord extends Component {
       d3.select("svg")
         .append("radialGradient")
         .attr("id", `line-gradient-${d.source.index}`)
-        //.attr("gradientUnits", "userSpaceOnUse")
-        /* .attr("gradientTransform", `scale(${ang} 1) rotate(90 
-                    ${ang  * Math.cos(d.source.endAngle- Math.PI/2)} 
-                    ${ang  * Math.sin(d.source.endAngle- Math.PI/2)})`)*/
+        .attr("gradientUnits", "userSpaceOnUse")
         // TODO: Can I add this to the data
         .attr("cx", ang * Math.cos(d.source.endAngle - Math.PI / 2))
         .attr("cy", ang * Math.sin(d.source.endAngle - Math.PI / 2))
@@ -136,7 +149,6 @@ class Chord extends Component {
         ])
         .enter()
         .append("stop")
-        .attr("angle", "90deg")
         .attr("offset", function (d) {
           return d.offset;
         })
