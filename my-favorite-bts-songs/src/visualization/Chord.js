@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import * as ch from "./new_chord";
 import * as rib from "./new_ribbons";
 import * as d3 from "d3";
+import '../fonts.css';
 
 var _ = require("lodash");
 
@@ -63,6 +64,8 @@ class Chord extends Component {
       .append("text")
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "central")
+      .attr("font-family", "Cute Font")
+      .attr("font-size", "119px")
       .attr("x", 0)
       .attr("y", 0)
       .text("대박");
