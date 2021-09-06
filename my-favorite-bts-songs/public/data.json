@@ -53,10 +53,39 @@
       "Words": 26,
       "Lines": [
         {
-          "Text": "대박"
+          "Text": "Ayy",
+          "Start": 0.26,
+          "End": 0.27
         },
         {
-          "Text": "대박"
+          "Text": "심장이 뛰지 않는대",
+          "Start": 0.27,
+          "End": 0.29
+        },
+        {
+          "Text": "더는 음악을 들을 때",
+          "Start": 0.29,
+          "End": 0.31
+        },
+        {
+          "Text": "Tryna pull that up",
+          "Start": 0.31,
+          "End": 0.32
+        },
+        {
+          "Text": "",
+          "Start": 0.33,
+          "End": 0.35
+        },
+        {
+          "Text": "Oh, that would be my first death",
+          "Start": 0.35,
+          "End": 0.37
+        },
+        {
+          "Text": "I've been always afraid of",
+          "Start": 0.37,
+          "End": 0.23
         }
       ]
     },
@@ -65,10 +94,29 @@
       "Words": 28,
       "Lines": [
         {
-          "Text": "대박"
+          "Text": "이게 나를 더 못 울린다면",
+          "Start": 0.39,
+          "End": 0.43
         },
         {
-          "Text": "대박"
+          "Text": "내 가슴을 더 떨리게 못 한다면",
+          "Start": 0.43,
+          "End": 0.46
+        },
+        {
+          "Text": "어쩜 이렇게 한 번 죽겠지 아마",
+          "Start": 0.46,
+          "End": 0.49
+        },
+        {
+          "Text": "But what if that moment’s right now",
+          "Start": 0.49,
+          "End": 0.51
+        },
+        {
+          "Text": "Right now",
+          "Start": 0.51,
+          "End": 0.53
         }
       ]
     },
@@ -77,10 +125,24 @@
       "Words": 13,
       "Lines": [
         {
-          "Text": "대박"
+          "Text": "귓가엔 느린 심장 소리만",
+          "Start": 0.53,
+          "End": 0.55
         },
         {
-          "Text": "대박"
+          "Text": "Bump, Bump, Bump",
+          "Start": 0.55,
+          "End": 0.56
+        },
+        {
+          "Text": "벗어날래도 그 입속으로",
+          "Start": 0.56,
+          "End": 0.58
+        },
+        {
+          "Text": "Jump, jump, jump",
+          "Start": 0.58,
+          "End": 0.59
         }
       ]
     },
@@ -89,10 +151,14 @@
       "Words": 8,
       "Lines": [
         {
-          "Text": "대박"
+          "Text": "어떤 노래도 와닿지 못해",
+          "Start": 0.59,
+          "End": 1.02
         },
         {
-          "Text": "대박"
+          "Text": "소리 없는 소릴 질러",
+          "Start": 1.02,
+          "End": 1.05
         }
       ]
     },
@@ -101,10 +167,24 @@
       "Words": 9,
       "Lines": [
         {
-          "Text": "대박"
+          "Text": "모든 빛이 침묵하는 바다",
+          "Start": 1.05,
+          "End": 1.08
         },
         {
-          "Text": "대박"
+          "Text": "Yeah, yeah, yeah",
+          "Start": 1.08,
+          "End": 1.09
+        },
+        {
+          "Text": "길 잃은 내 발목을 또 잡아",
+          "Start": 1.09,
+          "End": 1.11
+        },
+        {
+          "Text": "Yeah, yeah, yeah",
+          "Start": 1.11,
+          "End": 1.12
         }
       ]
     },
