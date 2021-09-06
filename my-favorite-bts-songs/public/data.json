@@ -4,87 +4,289 @@
   "Sequence": [
     {
       "Name": "Junkook",
-      "Words": 34
+      "Words": 34,
+      "Lines": [
+        {
+          "Text": "Do your thang",
+          "Start": 0.13,
+          "End": 0.14
+        },
+        {
+          "Text": "Do your thang with me now",
+          "Start": 0.14,
+          "End": 0.16
+        },
+        {
+          "Text": "Do your thang",
+          "Start": 0.16,
+          "End": 0.17
+        },
+        {
+          "Text": "Do your thang with me now",
+          "Start": 0.12,
+          "End": 0.19
+        },
+        {
+          "Text": "What’s my thang",
+          "Start": 0.19,
+          "End": 0.21
+        },
+        {
+          "Text": "What’s my thang tell me now",
+          "Start": 0.21,
+          "End": 0.23
+        },
+        {
+          "Text": "Tell me now",
+          "Start": 0.23,
+          "End": 0.25
+        },
+        {
+          "Text": "Yeah yeah yeah yeah",
+          "Start": 0.25,
+          "End": 0.26
+        }
+      ]
     },
     {
       "Name": "Suga",
-      "Words": 26
+      "Words": 26,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "RM",
-      "Words": 28
+      "Words": 28,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "V",
-      "Words": 13
+      "Words": 13,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jimin",
-      "Words": 8
+      "Words": 8,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Junkook",
-      "Words": 9
+      "Words": 9,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jimin",
-      "Words": 18
+      "Words": 18,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "V",
-      "Words": 12
+      "Words": 12,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jin",
-      "Words": 18
+      "Words": 18,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jimin",
-      "Words": 18
+      "Words": 18,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "V",
-      "Words": 16
+      "Words": 16,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "J-Hope",
-      "Words": 25
+      "Words": 25,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Suga",
-      "Words": 25
+      "Words": 25,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Junkook",
-      "Words": 16
+      "Words": 16,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jin",
-      "Words": 10
+      "Words": 10,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jimin",
-      "Words": 16
+      "Words": 16,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "V",
-      "Words": 15
+      "Words": 15,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jin",
-      "Words": 12
+      "Words": 12,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Junkook",
-      "Words": 18
+      "Words": 18,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jin",
-      "Words": 18
+      "Words": 18,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     },
     {
       "Name": "Jimin",
-      "Words": 16
+      "Words": 16,
+      "Lines": [
+        {
+          "Text": "대박"
+        },
+        {
+          "Text": "대박"
+        }
+      ]
     }
   ]
 }

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import * as ch from "./new_chord";
 import * as rib from "./new_ribbons";
 import * as d3 from "d3";
-import '../fonts.css';
+import "../fonts.css";
 
 var _ = require("lodash");
 
@@ -47,7 +47,10 @@ class Chord extends Component {
     const start = _.filter(test, (el) => {
       return el.source.isStart === true;
     });
-    console.log(sData);
+
+    const textData = _.map(data.Sequence, "Lines");
+
+    console.log(textData);
     console.log(start);
 
     const groups = this.chord
@@ -62,13 +65,14 @@ class Chord extends Component {
     this.chord
       .select("g")
       .append("text")
+      .attr("class", "songtext")
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "central")
       .attr("font-family", "Cute Font")
-      .attr("font-size", "119px")
+      .attr("font-size", "90px")
       .attr("x", 0)
       .attr("y", 0)
-      .text("대박");
+      .text(() => displayText(0.2)); // TODO: Add event: if somethign happens (right timing has come) set text to next line
 
     groups
       .append("g")
@@ -132,6 +136,17 @@ class Chord extends Component {
         console.log(t);
         return t;
       });
+    }
+
+    function displayText(timeStamp) {
+      console.log(textData);
+      for (let element of textData) {
+        for (let line of element) {
+          if (timeStamp >= line.Start && timeStamp <= line.End) {
+            return line.Text;
+          }
+        }
+      }
     }
 
     function calculateGradient(d) {
