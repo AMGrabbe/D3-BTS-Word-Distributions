@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       data: {},
-      value: 0
+      value: 0,
     };
   }
 
@@ -25,12 +25,12 @@ class App extends Component {
   handleChange = (value) => this.setState({ value: value });
 
   render() {
-    console.log(this.state.value);
     const { data } = this.state;
+    const { value } = this.state;
     return (
       <div className="App">
         <div className="diagram">
-          <Chord data={data} />
+          <Chord data={data}  value={value}/>
           <TestSlider getValue={this.handleChange} />
         </div>
       </div>

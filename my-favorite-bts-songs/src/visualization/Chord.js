@@ -22,8 +22,26 @@ class Chord extends Component {
       .attr("transform", "translate(500, 500)");
   }
 
+  displayText(timeStamp, textData) {
+    console.log("TEST");
+    for (let element of textData) {
+      for (let line of element) {
+        if (timeStamp >= line.Start && timeStamp <= line.End) {
+          return line.Text;
+        }
+      }
+    }
+  }
+
   async componentDidUpdate(nextProps) {
-    if(this.props.data !== nextProps.data) this.drawChord();
+    if (this.props.data !== nextProps.data) this.drawChord();
+
+    if (this.props.value !== nextProps.value) {
+      const textData = _.map(this.props.data.Sequence, "Lines");
+      d3.select(".songtext").text(() =>
+        this.displayText(this.props.value, textData)
+      );
+    }
   }
 
   drawChord() {
@@ -39,20 +57,10 @@ class Chord extends Component {
       "#B430D9",
     ];
     const memberColors = _.zipObject(names, colors);
-
     const test = ch.new_chord().padAngle(0.05)(data.Sequence);
-
-    const sData = d3.groups(test, (d) => d.source.isStart).keys();
-
     const start = _.filter(test, (el) => {
       return el.source.isStart === true;
     });
-
-    const textData = _.map(data.Sequence, "Lines");
-
-    console.log(textData);
-    console.log(start);
-
     const groups = this.chord
       .datum(test)
       .append("g")
@@ -71,8 +79,8 @@ class Chord extends Component {
       .attr("font-family", "Cute Font")
       .attr("font-size", "90px")
       .attr("x", 0)
-      .attr("y", 0)
-      .text(() => displayText(0.2)); // TODO: Add event: if somethign happens (right timing has come) set text to next line
+      .attr("y", 0);
+    //.text(() => displayText(0.20)); // TODO: Add event: if somethign happens (right timing has come) set text to next line
 
     groups
       .append("g")
@@ -136,17 +144,6 @@ class Chord extends Component {
         console.log(t);
         return t;
       });
-    }
-
-    function displayText(timeStamp) {
-      console.log(textData);
-      for (let element of textData) {
-        for (let line of element) {
-          if (timeStamp >= line.Start && timeStamp <= line.End) {
-            return line.Text;
-          }
-        }
-      }
     }
 
     function calculateGradient(d) {
