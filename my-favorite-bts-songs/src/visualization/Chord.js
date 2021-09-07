@@ -22,8 +22,8 @@ class Chord extends Component {
       .attr("transform", "translate(500, 500)");
   }
 
-  async componentDidUpdate() {
-    this.drawChord();
+  async componentDidUpdate(nextProps) {
+    if(this.props.data !== nextProps.data) this.drawChord();
   }
 
   drawChord() {
