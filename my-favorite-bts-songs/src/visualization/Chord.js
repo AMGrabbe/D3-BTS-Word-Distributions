@@ -23,7 +23,6 @@ class Chord extends Component {
   }
 
   displayText(timeStamp, textData) {
-    console.log("TEST");
     for (let element of textData) {
       for (let line of element) {
         if (timeStamp >= line.Start && timeStamp <= line.End) {
@@ -106,7 +105,7 @@ class Chord extends Component {
       // .call((d) => createConicalGradtient(d));
       .attr("fill", (d) => calculateGradient(d));
     //.style('opacity', 0.3);
-    //console.log(ribbons);
+  
 
     //.append("foreignObject")
     //.attr("width", 1000)
@@ -141,7 +140,6 @@ class Chord extends Component {
           value: value,
           angle: d.endAngle / 2,
         };
-        console.log(t);
         return t;
       });
     }
@@ -152,7 +150,6 @@ class Chord extends Component {
         d.source.startAngle - Math.PI / 2,
         d.target.startAngle - Math.PI / 2
       );
-      console.log(ang);
       d3.select("svg")
         .append("radialGradient")
         .attr("id", `line-gradient-${d.source.index}`)
