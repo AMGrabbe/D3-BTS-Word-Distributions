@@ -5,7 +5,7 @@ import * as rib from "./new_ribbons";
 import * as d3 from "d3";
 import "../fonts.css";
 
-var _ = require("lodash");
+let _ = require("lodash");
 
 class Chord extends Component {
   constructor(props) {
@@ -13,12 +13,14 @@ class Chord extends Component {
   }
 
   async componentDidMount() {
-    this.chord = d3
+    this.svg = d3
       .select(".diagram")
       .append("svg")
+      .attr("xmlns", "http://www.w3.org/2000/svg")
       .attr("height", 1000)
-      .attr("width", 1000)
-      .append("g")
+      .attr("width", 1000);
+
+    this.chord = this.svg.append("g")
       .attr("transform", "translate(500, 500)");
   }
 
@@ -37,7 +39,7 @@ class Chord extends Component {
 
     if (this.props.value !== nextProps.value) {
       const textData = _.map(this.props.data.Sequence, "Lines");
-      d3.select(".songtext").text(() =>
+      d3.select(".songtext").html(() =>
         this.displayText(this.props.value, textData)
       );
     }
@@ -69,16 +71,36 @@ class Chord extends Component {
 
     // Add test field with test text
     // TODO: give class to element intead grabbing the first g element
-    this.chord
-      .select("g")
-      .append("text")
+    this.svg
+      .append('foreignObject')
+      .attr("width", 200)
+      .attr("height", 200)
+      .attr("x", 500 - 100)
+      .attr("y", 500 -100)
+      .attr("font-family", "Cute Font")
+      .attr("font-size", "90px")
+      //.attr("left", "50%")
+      //.attr("position", "absolute")
+      .attr("requiredExtensions","http://www.w3.org/1999/xhtml")
+      .append("xhtml:div")
+      .attr("xmlns","http://www.w3.org/1999/xhtml")
+      .attr("class", "songtext")
+      .attr("width", "100px")
+      .attr("height", 90)
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("word-break", "break-all");
+    /* .append("text")
       .attr("class", "songtext")
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "central")
       .attr("font-family", "Cute Font")
       .attr("font-size", "90px")
       .attr("x", 0)
-      .attr("y", 0);
+      .attr("y", 0)*/
+    //.style("text-align", "center")
+    //.style("shape-inside", "circle(120px at 150px 150px)")
+
     //.text(() => displayText(0.20)); // TODO: Add event: if somethign happens (right timing has come) set text to next line
 
     groups
@@ -105,12 +127,11 @@ class Chord extends Component {
       // .call((d) => createConicalGradtient(d));
       .attr("fill", (d) => calculateGradient(d));
     //.style('opacity', 0.3);
-  
 
     //.append("foreignObject")
     //.attr("width", 1000)
     //.attr("height", 1000)
-    function createConicalGradtient(d) {
+    function createConicalGradient(d) {
       d3.select("svg")
         .append("image")
         .attr("href", "chord.jpg")

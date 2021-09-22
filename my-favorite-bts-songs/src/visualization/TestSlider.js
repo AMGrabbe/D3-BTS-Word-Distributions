@@ -7,7 +7,7 @@ function TestSlider(props) {
       <input
         type="range"
         min="0"
-        max="3.18"
+        max="4.00"
         value="0"
         id="myRange"
         step="0.1"
