@@ -69,27 +69,26 @@ class Chord extends Component {
       .data((d) => d.groups)
       .enter();
 
-    // Add test field with test text
-    // TODO: give class to element intead grabbing the first g element
+    // TODO: Store radius in variable
+    let textFielddimension =(100 * Math.cos(Math.PI/4))-(100 * Math.cos(3*Math.PI/4))
+
     this.svg
       .append('foreignObject')
-      .attr("width", 200)
-      .attr("height", 200)
-      .attr("x", 500 - 100)
-      .attr("y", 500 -100)
+      .attr("width", textFielddimension)
+      .attr("height",textFielddimension)
+      .attr("x", 500 - (100 * Math.cos(Math.PI/4)))
+      .attr("y", 500 - (100 * Math.sin(Math.PI/4)))
       .attr("font-family", "Cute Font")
-      .attr("font-size", "90px")
+      .attr("font-size", "40px")
       //.attr("left", "50%")
       //.attr("position", "absolute")
       .attr("requiredExtensions","http://www.w3.org/1999/xhtml")
       .append("xhtml:div")
       .attr("xmlns","http://www.w3.org/1999/xhtml")
       .attr("class", "songtext")
-      .attr("width", "100px")
-      .attr("height", 90)
       .attr("x", 0)
       .attr("y", 0)
-      .attr("word-break", "break-all");
+      .attr("word-break", "keep-all");
     /* .append("text")
       .attr("class", "songtext")
       .attr("text-anchor", "middle")
