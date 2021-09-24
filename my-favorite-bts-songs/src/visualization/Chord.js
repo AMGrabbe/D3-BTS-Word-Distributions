@@ -6,6 +6,8 @@ import * as d3 from "d3";
 import "../fonts.css";
 
 let _ = require("lodash");
+// TODO: Store radius in variable
+let textFielddimension =(100 * Math.cos(Math.PI/4))-(100 * Math.cos(3*Math.PI/4))
 
 class Chord extends Component {
   constructor(props) {
@@ -39,9 +41,9 @@ class Chord extends Component {
 
     if (this.props.value !== nextProps.value) {
       const textData = _.map(this.props.data.Sequence, "Lines");
-      d3.select(".songtext").html(() =>
-        this.displayText(this.props.value, textData)
-      );
+      d3.select(".songtext").html(() =>{
+        return this.displayText(this.props.value, textData)
+      });
     }
   }
 
@@ -69,8 +71,7 @@ class Chord extends Component {
       .data((d) => d.groups)
       .enter();
 
-    // TODO: Store radius in variable
-    let textFielddimension =(100 * Math.cos(Math.PI/4))-(100 * Math.cos(3*Math.PI/4))
+    
 
     this.svg
       .append('foreignObject')
@@ -85,10 +86,20 @@ class Chord extends Component {
       .attr("requiredExtensions","http://www.w3.org/1999/xhtml")
       .append("xhtml:div")
       .attr("xmlns","http://www.w3.org/1999/xhtml")
-      .attr("class", "songtext")
       .attr("x", 0)
       .attr("y", 0)
-      .attr("word-break", "keep-all");
+      .style("display", "flex")
+      .style("align-items", "center")
+      .style("justify-content", "center")
+      .append("xhtml:div")
+      .attr("xmlns","http://www.w3.org/1999/xhtml")
+      .style("height", `${textFielddimension}px`)
+      .style("display", "flex")
+      .style("align-items", "center")
+      .append("xhtml:div")
+      .attr("class", "songtext")
+      .style("justify-content", "center")
+      .style("word-break", "keep-all");
     /* .append("text")
       .attr("class", "songtext")
       .attr("text-anchor", "middle")
