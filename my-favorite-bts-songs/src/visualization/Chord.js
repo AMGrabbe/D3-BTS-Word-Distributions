@@ -4,10 +4,23 @@ import * as ch from "./new_chord";
 import * as rib from "./new_ribbons";
 import * as d3 from "d3";
 import "../fonts.css";
+import { indexOf } from "lodash";
 
 let _ = require("lodash");
 // TODO: Store radius in variable
-let textFielddimension =(100 * Math.cos(Math.PI/4))-(100 * Math.cos(3*Math.PI/4))
+let textFielddimension = (100 * Math.cos(Math.PI/4))-(100 * Math.cos(3*Math.PI/4))
+let currentSingerIndex = 0;
+let names = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Junkook"];
+let colors = [
+      "#162D59",
+      "#E99FBD",
+      "#B4B8BF",
+      "#F20505",
+      "#D9AA1E",
+      "#05A66B",
+      "#B430D9",
+    ];
+let memberColors = _.zipObject(names, colors);
 
 class Chord extends Component {
   constructor(props) {
@@ -27,9 +40,10 @@ class Chord extends Component {
   }
 
   displayText(timeStamp, textData) {
-    for (let element of textData) {
+    for (let [index, element] of textData.entries()) {
       for (let line of element) {
         if (timeStamp >= line.Start && timeStamp <= line.End) {
+          currentSingerIndex = index;
           return line.Text;
         }
       }
@@ -39,27 +53,18 @@ class Chord extends Component {
   async componentDidUpdate(nextProps) {
     if (this.props.data !== nextProps.data) this.drawChord();
 
+    let sequence = this.props.data.Sequence
     if (this.props.value !== nextProps.value) {
-      const textData = _.map(this.props.data.Sequence, "Lines");
-      d3.select(".songtext").html(() =>{
-        return this.displayText(this.props.value, textData)
-      });
+      const textData = _.map(sequence, "Lines");
+      d3.select(".songtext")
+        .style("color", memberColors[sequence[currentSingerIndex].Name])
+        .html(() => this.displayText(this.props.value, textData));
+        
     }
   }
 
   drawChord() {
     const { data } = this.props;
-    const names = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Junkook"];
-    const colors = [
-      "#162D59",
-      "#E99FBD",
-      "#B4B8BF",
-      "#F20505",
-      "#D9AA1E",
-      "#05A66B",
-      "#B430D9",
-    ];
-    const memberColors = _.zipObject(names, colors);
     const test = ch.new_chord().padAngle(0.05)(data.Sequence);
     const start = _.filter(test, (el) => {
       return el.source.isStart === true;
@@ -80,9 +85,7 @@ class Chord extends Component {
       .attr("x", 500 - (100 * Math.cos(Math.PI/4)))
       .attr("y", 500 - (100 * Math.sin(Math.PI/4)))
       .attr("font-family", "Cute Font")
-      .attr("font-size", "40px")
-      //.attr("left", "50%")
-      //.attr("position", "absolute")
+      .attr("font-size", `${textFielddimension/4}px`)
       .attr("requiredExtensions","http://www.w3.org/1999/xhtml")
       .append("xhtml:div")
       .attr("xmlns","http://www.w3.org/1999/xhtml")
@@ -100,19 +103,7 @@ class Chord extends Component {
       .attr("class", "songtext")
       .style("justify-content", "center")
       .style("word-break", "keep-all");
-    /* .append("text")
-      .attr("class", "songtext")
-      .attr("text-anchor", "middle")
-      .attr("alignment-baseline", "central")
-      .attr("font-family", "Cute Font")
-      .attr("font-size", "90px")
-      .attr("x", 0)
-      .attr("y", 0)*/
-    //.style("text-align", "center")
-    //.style("shape-inside", "circle(120px at 150px 150px)")
-
-    //.text(() => displayText(0.20)); // TODO: Add event: if somethign happens (right timing has come) set text to next line
-
+    
     groups
       .append("g")
       .append("path")
